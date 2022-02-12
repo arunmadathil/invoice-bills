@@ -1,0 +1,10 @@
+{
+    "invoice": "S2342",
+    "discount": {
+        "percentage": 10,
+        "price": 36
+    },
+    "subtotal":360,
+    "grandtotal":324,
+    "date":"27 July,2021"
+}

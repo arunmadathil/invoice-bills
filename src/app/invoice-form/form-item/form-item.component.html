@@ -1,0 +1,43 @@
+<div [formGroup] = "invoiceFormItem"  >
+<div class="mt-4 ml-4">
+  <div class="row justify-content-between">
+    <div class="col-md-2 col-sm-12 form-group">
+      <label for="item-name">Item</label>
+      <input type="txt" class="form-control" id="item-name" name="item" formControlName="item" (change) ="updateOnchage(itemIndex)" placeholder="Enter Item">
+    </div>
+    <div class="col-md-2 col-sm-12 form-group" *ngIf= "passTaxType">
+      <label for="item-name">GST</label>
+        <select id="gst" name="gst" formControlName="gst" (change) ="updateOnGstChange(itemIndex)" class="form-control">
+          <option *ngFor = "let slab of gstSlabs | keyvalue ; let idx = index" value="{{slab.key}}"    [attr.selected]="(slab.key == '18')">{{ slab.value }}</option>
+        </select>
+    </div>
+    <div class="col-md-2 col-sm-12 form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" class="form-control" id="quantity"  min=1 name ="quantity" (change) ="updateOnQtyChange(itemIndex)" formControlName="quantity" placeholder="Enter Quantity">
+    </div>
+    <div class="col-md-2 col-sm-12 form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price"  name ="price"  (change) ="updateOnPriceChange(itemIndex)" value ="0" formControlName="price" placeholder="Item Price">
+    </div>
+    <div class="col-md-1 col-sm-12 form-group"  *ngIf= "passTaxType">
+      <label for="price">SGST</label>
+      <br>
+      <label for="price">{{sgst}}</label>
+    </div>
+    <div class="col-md-1 col-sm-12 form-group"  *ngIf= "passTaxType">
+      <label for="price">CGST</label>
+      <br>
+      <label for="price">{{sgst}}</label>
+    </div>
+    <div class="col-md-2 col-sm-12 form-group">
+      <label for="total">Total</label>
+      <input type="number" class="form-control" id="total" name ="total" (change) ="updateOnTotalChange(itemIndex)" formControlName="total" placeholder="Item Total Amount">
+    </div>
+    <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-4">
+      <button class="btn btn-danger" (click) = "removeItem(itemIndex)" type="button"> <i class="fa fa-trash"></i>
+      </button>
+    </div>
+  </div>
+  <hr>
+</div>  
+</div>

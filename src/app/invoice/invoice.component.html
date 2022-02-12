@@ -1,0 +1,89 @@
+<div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12 padding">
+    <div class="card">
+        <div class="card-header p-4">
+            <a class="pt-2 d-inline-block" href="index.html" data-abc="true">{{company}}</a>
+            <div class="float-right">
+                <h3 class="mb-0">Invoice #{{summary.invoice}}</h3>
+                Date:{{summary.date}}
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h5 class="mb-3">From:</h5>
+                  
+                    <div *ngFor ="let add of from_address; let i = index">
+                        <h3 *ngIf="i == 0 ;else address" else="#label">{{add}}</h3>
+                        <ng-template #address>  <span>{{add}}</span></ng-template>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <h5 class="mb-3">To:</h5>
+                    <div *ngFor ="let add of to_address; let i = index">
+                        <h3 class="text-dark mb-1" *ngIf="i == 0 ;else address" else="#label">{{add}}</h3>
+                        <ng-template #address>  <span>{{add}}</span></ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                           <th>Sl No</th>
+                           <th>Product</th>
+                           <th>Quantity</th>
+                           <th>Unit Price</th>
+                           <th>IGST</th>
+                           <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr *ngFor = "let item of items; let i = index">
+                           <td>{{i + 1}}</td>
+                           <td> {{item.item}}</td>
+                           <td>{{item.quantity}}</td>
+                           <td>₹{{item.unitprice}}</td>
+                           <td>
+                               ₹{{item.igst.amount}} <br>
+                              <i>{{item.igst.percentage}} %</i> 
+                           </td>
+                           <td>₹{{item.amount}}</td>
+                       </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-5">
+                </div>
+                <div class="col-lg-4 col-sm-5 ml-auto">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left">
+                                    <strong class="text-dark">Subtotal</strong>
+                                </td>
+                                <td class="right">₹{{summary.subtotal}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong class="text-dark">Discount ({{summary?.discount?.percentage}}%)</strong>
+                                </td>
+                                <td class="right">₹{{summary.discount.price}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong class="text-dark">Total</strong> </td>
+                                <td class="right">
+                                    <strong class="text-dark">₹{{summary.grandtotal}}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white">
+            <p class="mb-0">{{from_address.join(',')}}</p>
+        </div>
+    </div>
+</div>

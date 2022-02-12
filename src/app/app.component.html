@@ -1,0 +1,14 @@
+<nav>
+    <ul>
+      <li><a routerLink="/invoice" routerLinkActive="active">Add Invoice</a></li>
+      <li><a routerLink="/invoice/1235" routerLinkActive="active">View Invoice</a></li>
+    </ul>
+  </nav>
+<app-logout *ngIf="displayLogout == 'false'"></app-logout>
+
+
+
+
+
+
+<router-outlet></router-outlet>

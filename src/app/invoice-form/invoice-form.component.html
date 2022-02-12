@@ -1,0 +1,72 @@
+<form class="form " class="mt-2" autocomplete="off"  (ngSubmit)="submitInvoiceForm()">
+    <div class="row mt2 ml-4">
+        <div class="form-group">
+            <label for="">None </label> &nbsp;
+            <input type="radio" name="tax_type" (change)="getTaxType($event)" value="0" checked>
+        </div>
+        <div class="form-group">
+            &nbsp;
+            <label for="">GST </label>
+            &nbsp;
+            <input type="radio" name="tax_type"  (change)="getTaxType($event)" value = "1">
+        </div>
+    </div>
+    <div [formGroup]="invoiceFormItems" class="items">
+        <app-form-item *ngFor = "let formItem of getInvoiceItem.controls; let i = index" [itemIndex] = "i"
+        [invoiceFormItem] = "getGroup(i)" 
+        (removeItemEventEmitter) = "deleteItemFromList($event)"
+        (updatedFormValuesEmitter) = "updateFormControlValue($event)"
+        [passTaxType] = "taxType"
+    >
+    </app-form-item>
+    </div>
+   
+
+    <div class="form-group ml-4">
+        <div class="col p-0 ">
+            <button class="btn btn-primary" type="button" (click)="addNewInvoiceItems()" [disabled]="!invoiceFormItems.valid"><i class="bx bx-plus"></i>
+                Add
+            </button>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-4 col-sm-5"></div>
+            <div class="col-lg-4 col-sm-5 ml-auto">
+                <table class="table table-clear">
+                    <tbody>
+                        <tr>
+                            <td class="left">
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="right">{{sub_total}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Discount</strong>
+                            </td>
+                            <td class="right" [formGroup]="discountFormFields" >
+                                <input type="text" class="form-control" name="bypercentage" (change)="updateGrandToatlOnDiscount()" formControlName="bypercentage" placeholder="%" min="0">
+                                <input type="text" placeholder="0.00" class="form-control" (change)="updateGrandToatlOnPrice()" formControlName="byprice" min="0"> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="right">
+                                <strong>{{grand_total}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <a class="btn btn-success" href="#" data-abc="true">
+                    <i class="fa fa-usd"></i> Proceed to Payment</a> -->
+            </div>
+        </div>
+        <label for="" class=""></label>
+    </div>
+    <div class="offset-md-6 col-md-4">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>

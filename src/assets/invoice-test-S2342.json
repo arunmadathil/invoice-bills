@@ -1,0 +1,22 @@
+[
+    {
+       "item":"Samsung Mobile",
+       "quantity":2,
+       "unitprice":100,
+       "igst":{
+          "percentage":20,
+          "amount":40
+       },
+       "amount":240
+    },
+    {
+       "item":"AirPod",
+       "quantity":1,
+       "unitprice":400,
+       "igst":{
+          "percentage":20,
+          "amount":80
+       },
+       "amount":120
+    }
+ ]
